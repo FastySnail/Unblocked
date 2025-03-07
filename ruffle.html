@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ruffle Player</title>
+</head>
+<body>
+    <script src="ruffle.js"></script> <!-- Adjust the path if needed -->
+    <div>
+        <input type="file" id="fileInput" accept=".swf" />
+    </div>
+    <div id="flashContainer"></div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const objectURL = URL.createObjectURL(file);
+                const container = document.getElementById('flashContainer');
+                container.innerHTML = '';
+                const ruffle = window.RufflePlayer.newest();
+                const player = ruffle.createPlayer();
+                container.appendChild(player);
+                player.load(objectURL);
+            }
+        });
+    </script>
+</body>
+</html>
