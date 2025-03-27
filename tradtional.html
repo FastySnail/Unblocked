@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tradtionals</title>
+    <title>Traditional Games</title>
     <style>
         /* General Styles */
         body {
@@ -18,6 +18,35 @@
             font-size: 80px;
             color: rgb(31, 29, 156);
             margin: 20px 0;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgb(31, 29, 156);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: rgb(31, 29, 130);
         }
 
         /* Game Links Layout */
@@ -54,68 +83,95 @@
     </style>
 </head>
 <body>
-    <h1 class="title">Tradtional Games</h1>
+    <h1 class="title">Traditional Games</h1>
+
+    <!-- Search Bar under the title -->
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search Games..." onkeyup="searchGames()">
+    </div>
 
     <div class="game-links">
         <a href="index.html"><img src="image/Back.png" alt="Back"><span>Home</span></a>
-       <a href="games/ruffleGL/retrobowl/index.html"> 
-        <img src="image/retrobowl.png" alt="icon">
-        <span>Retro Bowl</span>
-       </a>
-       <a href="games/ruffleGL/google-snake/v/current/">
-        <img src="image/snake.jpg" alt="Icon">
-        <span>Google Snake</span>
-       </a>
-       <a href="games/ruffleGL/bitlife/index.html">
-        <img src="image/bitlife.jpg" alt="Icon">
-        <span>Bit Life</span>
-       </a>
-       <a href="games/ruffleGL/gun-mayhem/index.html">
-        <img src="image/gunmayhem.jpg" alt="icon">
-        <span>Gun Mayhem</span>
-       </a>
-       <a href="games/ruffleGL/gun-mayhem-2/index.html"><img src="image/gunmayhem.jpg" alt="icon">
-        <span>Gun Mayhem 2</span>
+
+        <!-- Google Snake and Retro Bowl at the top -->
+        <a href="games/ruffleGL/google-snake/v/current/">
+            <img src="image/snake.jpg" alt="Icon">
+            <span>Google Snake</span>
         </a>
-       <a href="games/ruffleGL/rooftop-snipers/index.html">
-        <img src="image/rooftopsnipers.jpg" alt="Icon">
-        <span>Rooftop Snipers</span>
-       </a>
-       <a href="games/ruffleGL/madalin-stunt-cars-3/index.html"><img src="image/madalyn.jpg" alt="Madalin Stunt Cars 3">
-        <span>Madalin Stunt Cars 3</span>
-       </a>
-       <a href="games/ruffleGL/learntofly/index.html">
-        <img src="image/learntofly.jpg" alt="ICon">
-        <span>Learn To Fly</span>
-       </a>
-       <a href="games/ruffleGL/basketball-stars/index.html">
-        <img src="image/basketballstars.jpeg" alt="Icon">
-        <span>Basketball Stars</span>
-       </a>
-       <a href="games/ruffleGL/basketball-legends-2020/index.html">
-        <img src="image/basketballlegends.jpeg" alt="Icon">
-        <span>Basketball Legends</span>
-       </a>
-       <a href="games/ruffleGL/subway-surfers/index.html">
-        <img src="image/subwaysurfers.jpg" alt="Icon">
-        <span>Subway Surfers</span>
-       </a>
-       <a href="games/ruffleGL/slope/index.html">
-        <img src="image/solpe.png" alt="Icon">
-        <span>Slope</span>
-       </a>
-       <a href="games/ruffleGL/bloonstd2/index.html">
-        <img src="image/bloonstd2.jpg" alt="Icon">
-        <span>Bloons TD 2</span>
-       </a>
-       <a href="games/ruffleGL/jetpack/index.html">
-        <img src="image/jetpack.jpg" alt="Icon">
-        <span>Jetpack</span>
-       </a>
-       <a href="games/ruffleGL/ovo/index.html">
-        <img src="image/ovo.png" alt="Icon">
-        <span>OVO</span>
-       </a>
+        <a href="games/ruffleGL/retrobowl/index.html"> 
+            <img src="image/retrobowl.png" alt="icon">
+            <span>Retro Bowl</span>
+        </a>
+
+        <!-- Remaining games sorted alphabetically -->
+        <a href="games/ruffleGL/basketball-legends-2020/index.html">
+            <img src="image/basketballlegends.jpeg" alt="Icon">
+            <span>Basketball Legends</span>
+        </a>
+        <a href="games/ruffleGL/basketball-stars/index.html">
+            <img src="image/basketballstars.jpeg" alt="Icon">
+            <span>Basketball Stars</span>
+        </a>
+        <a href="games/ruffleGL/bitlife/index.html">
+            <img src="image/bitlife.jpg" alt="Icon">
+            <span>Bit Life</span>
+        </a>
+        <a href="games/ruffleGL/bloonstd2/index.html">
+            <img src="image/bloonstd2.jpg" alt="Icon">
+            <span>Bloons TD 2</span>
+        </a>
+        <a href="games/ruffleGL/gun-mayhem/index.html">
+            <img src="image/gunmayhem.jpg" alt="icon">
+            <span>Gun Mayhem</span>
+        </a>
+        <a href="games/ruffleGL/gun-mayhem-2/index.html">
+            <img src="image/gunmayhem.jpg" alt="icon">
+            <span>Gun Mayhem 2</span>
+        </a>
+        <a href="games/ruffleGL/jetpack/index.html">
+            <img src="image/jetpack.jpg" alt="Icon">
+            <span>Jetpack</span>
+        </a>
+        <a href="games/ruffleGL/learntofly/index.html">
+            <img src="image/learntofly.jpg" alt="ICon">
+            <span>Learn To Fly</span>
+        </a>
+        <a href="games/ruffleGL/madalin-stunt-cars-3/index.html">
+            <img src="image/madalyn.jpg" alt="Madalin Stunt Cars 3">
+            <span>Madalin Stunt Cars 3</span>
+        </a>
+        <a href="games/ruffleGL/ovo/index.html">
+            <img src="image/ovo.png" alt="Icon">
+            <span>OVO</span>
+        </a>
+        <a href="games/ruffleGL/rooftop-snipers/index.html">
+            <img src="image/rooftopsnipers.jpg" alt="Icon">
+            <span>Rooftop Snipers</span>
+        </a>
+        <a href="games/ruffleGL/slope/index.html">
+            <img src="image/solpe.png" alt="Icon">
+            <span>Slope</span>
+        </a>
+        <a href="games/ruffleGL/subway-surfers/index.html">
+            <img src="image/subwaysurfers.jpg" alt="Icon">
+            <span>Subway Surfers</span>
+        </a>
     </div>
+
+    <script>
+        function searchGames() {
+            var query = document.getElementById('searchBar').value.toLowerCase();
+            var gameLinks = document.querySelectorAll('.game-links a');
+
+            gameLinks.forEach(function(link) {
+                var gameName = link.querySelector('span').textContent.toLowerCase();
+                if (gameName.includes(query)) {
+                    link.style.display = 'block';  // Show the game if it matches the search
+                } else {
+                    link.style.display = 'none';  // Hide the game if it doesn't match
+                }
+            });
+        }
+    </script>
 </body>
 </html>
