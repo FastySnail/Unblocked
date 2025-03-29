@@ -6,7 +6,6 @@
     <title>Games</title>
     <style>
         /* Your existing styles */
-        /* Chat UI Styles */
         #chat-container {
             margin-top: 30px;
             padding: 10px;
@@ -45,7 +44,12 @@
     </style>
 </head>
 <body>
-    <!-- Your existing content here -->
+    <h1 class="title">I don't know what to name this website...</h1>
+
+    <!-- Game Links and Other Content -->
+    <div class="game-links">
+        <!-- Game Links Go Here -->
+    </div>
 
     <!-- Chat Feature -->
     <div id="chat-container">
@@ -55,26 +59,39 @@
         <button onclick="sendMessage()">Send</button>
     </div>
 
-    <!-- Load the Socket.IO client from the server -->
+    <!-- Socket.IO Client Script -->
     <script src="https://chat-server-9sdl.onrender.com/socket.io/socket.io.js"></script>
 
     <script>
-        const socket = io("https://chat-server-9sdl.onrender.com"); // Connect to the Render server
+        // Create the Socket.IO client connection to the server
+        const socket = io("https://chat-server-9sdl.onrender.com");
 
-        // Send a message
+        // Debugging: Check if the socket connection was established
+        socket.on("connect", () => {
+            console.log("Connected to the server with socket ID:", socket.id);
+        });
+
+        // Send a message when the button is clicked
         function sendMessage() {
             const msg = document.getElementById("message").value;
             if (msg.trim()) {
+                console.log("Sending message:", msg); // Debugging log
                 socket.emit("message", msg); // Emit the message to the server
-                document.getElementById("message").value = ""; // Clear input after sending
+                document.getElementById("message").value = ""; // Clear the input field
             }
         }
 
-        // Listen for incoming messages
+        // Listen for incoming messages from the server
         socket.on("message", (msg) => {
+            console.log("Received message:", msg); // Debugging log
             const li = document.createElement("li");
             li.textContent = msg;
-            document.getElementById("messages").appendChild(li); // Display the message
+            document.getElementById("messages").appendChild(li); // Add the message to the list
+        });
+
+        // Debugging: Listen for errors
+        socket.on("connect_error", (err) => {
+            console.error("Connection Error:", err);
         });
     </script>
 </body>
