@@ -55,10 +55,13 @@
         <button onclick="sendMessage()">Send</button>
     </div>
 
+    <!-- Load the Socket.IO client from the server -->
     <script src="https://chat-server-9sdl.onrender.com/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io("https://chat-server-9sdl.onrender.com"); // Your Render server URL
 
+    <script>
+        const socket = io("https://chat-server-9sdl.onrender.com"); // Connect to the Render server
+
+        // Send a message
         function sendMessage() {
             const msg = document.getElementById("message").value;
             if (msg.trim()) {
