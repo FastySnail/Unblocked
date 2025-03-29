@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+    <title>Global Chat</title>
     <style>
         /* Your existing styles */
+        .big-text {
+        font-size: 20PX;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        }
+        .bigger-text {
+        font-size: 40PX;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        }
         body {
             background-color: rgb(173, 117, 216);
             margin: 0;
@@ -92,11 +102,14 @@
     </style>
 </head>
 <body>
-    <h1 class="title">I don't know what to name this website...</h1>
+    <h1 class="title">Global Chat</h1>
 
     <!-- Game Links and Other Content -->
     <div class="game-links">
-        <!-- Game Links Go Here -->
+        <a href="index.html">
+            <img src="image/Back.png" alt="Back">
+            <span>Back</span>
+        </a>
     </div>
 
     <!-- Chat Feature -->
@@ -105,6 +118,17 @@
         <ul id="messages"></ul>
         <input id="message" type="text" placeholder="Type a message">
         <button onclick="sendMessage()">Send</button>
+    </div>
+    <div class="bigger-text">
+        <p>
+            How to use
+        </p>
+    </div>
+    <div class="big-text">
+        <p>
+            Everone who is currently on this page at the same time can chat together, so whoever you want to message must be on this page at the same time
+        </p>
+
     </div>
 
     <!-- Socket.IO Client Script -->
