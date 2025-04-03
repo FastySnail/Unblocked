@@ -11,29 +11,34 @@
             font-weight: bold;
             display: block;
             margin-top: 10px;
+            color: #FFD700; /* Yellow text */
         }
-
         .bigger-text {
             font-size: 40px;
             font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
             display: block;
+            color: #FFD700; /* Yellow text */
         }
-
         body {
-            background-color: rgb(173, 117, 216);
+            background-color: #000000; /* Black background */
             margin: 0;
             padding: 0;
             text-align: center;
             font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
         }
-
         .title {
             font-size: 80px;
-            color: rgb(31, 29, 156);
+            color: #FFD700; /* Yellow title */
             margin: 20px 0;
+            position: relative;
+            z-index: 2;
         }
-
         /* Game Links Layout */
         .game-links {
             display: flex;
@@ -42,59 +47,215 @@
             gap: 20px;
             max-width: 960px;
             margin: 20px auto;
+            position: relative;
+            z-index: 2;
         }
-
         .game-links a {
             text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: black;
+            color: #FFD700; /* Yellow text */
             font-size: 18px;
             width: 120px;
             margin-bottom: 10px;
         }
-
         .game-links img {
             width: 80px;
             height: auto;
             border-radius: 10px;
             transition: transform 0.2s ease-in-out;
+            border: 2px solid #FFD700; /* Yellow border */
         }
-
         .game-links img:hover {
             transform: scale(1.1);
+            box-shadow: 0 0 15px #FFD700; /* Yellow glow */
+        }
+        
+        /* Main content wrapper */
+        .main-content {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: #222222; /* Dark gray footer */
+            color: #FFD700; /* Yellow text */
+            padding: 15px 0;
+            margin-top: 20px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-links a {
+            color: #FFD700; /* Yellow text */
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #FFFFFF; /* White text on hover */
+            transform: scale(1.05);
+            text-shadow: 0 0 5px #FFD700; /* Yellow glow */
+        }
+        
+        .copyright {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #FFD700; /* Yellow text */
+        }
+        
+        /* DVD Logo Animation */
+        .dvd-logo {
+            position: fixed;
+            width: 150px;
+            height: 67px; /* Maintain DVD logo aspect ratio */
+            z-index: 1;
+            opacity: 0.4;
+            top: 120px;
+            left: 200px;
+        }
+        
+        .dvd-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Color change animation for DVD logo */
+        @keyframes colorChange {
+            0% { fill: #FFD700; }
+            20% { fill: #FF00FF; }
+            40% { fill: #00FFFF; }
+            60% { fill: #00FF00; }
+            80% { fill: #FF6600; }
+            100% { fill: #FFD700; }
+        }
+        
+        .dvd-logo path {
+            animation: colorChange 8s linear infinite;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dvdLogo = document.querySelector('.dvd-logo');
+            const logoWidth = 150;
+            const logoHeight = 67;
+            
+            let x = Math.random() * (window.innerWidth - logoWidth);
+            let y = Math.random() * (window.innerHeight - logoHeight);
+            let xSpeed = (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random() * 1);
+            let ySpeed = (Math.random() > 0.5 ? 1 : -1) * (1 + Math.random() * 1);
+            
+            const colors = ['#FFD700', '#FF00FF', '#00FFFF', '#00FF00', '#FF6600', '#FF0000'];
+            let currentColor = 0;
+            
+            function animate() {
+
+                x += xSpeed;
+                y += ySpeed;
+                
+
+                if (x <= 0 || x >= window.innerWidth - logoWidth) {
+                    xSpeed = -xSpeed;
+                    changeColor();
+                }
+                
+                if (y <= 0 || y >= window.innerHeight - logoHeight) {
+                    ySpeed = -ySpeed;
+                    changeColor();
+                }
+                
+
+                dvdLogo.style.left = x + 'px';
+                dvdLogo.style.top = y + 'px';
+                
+
+                requestAnimationFrame(animate);
+            }
+            
+            function changeColor() {
+                currentColor = (currentColor + 1) % colors.length;
+                const paths = dvdLogo.querySelectorAll('path');
+                paths.forEach(path => {
+                    path.style.fill = colors[currentColor];
+                });
+            }
+            
+
+            window.addEventListener('resize', function() {
+ 
+                if (x > window.innerWidth - logoWidth) {
+                    x = window.innerWidth - logoWidth;
+                }
+                if (y > window.innerHeight - logoHeight) {
+                    y = window.innerHeight - logoHeight;
+                }
+            });
+            
+
+            animate();
+        });
+    </script>
 </head>
 <body>
-    <h1 class="title">I don't know what to name this website...</h1>
 
-    <div class="game-links">
-        <a href="minecraft.html"><img src="image/minecraft.jpeg" alt="Minecraft"><span>Minecrafts</span></a>
-        <a href="chill.html"><img src="image/2048.png" alt="Chill Games"><span>Chill Games</span></a>
-        <a href="tradtional.html"><img src="image/star.jpg" alt="icon"><span>Tradtional Games</span></a>
-        <a href="afk.html"><img src="image/cc.jpeg" alt="AFK Games"><span>Afk Games</span></a>
-        <a href="globalchat.html"><img src="image/chat.png" alt="Chat"><span>Chat</span></a>
-        <a href="tools.html"><img src="image/hammer.png" alt="Tools"><span>Tools</span></a>
-        <a href="soundboard/index.html"><img src="soundboard/img/mlg.png" alt=""><span>Sound Board</span></a>
-        
-        
-        
-
-        
-        <div>
-            <p class="big-text">
-                ● ADDED A LIVE CHAT <br>
-                ● ADDED BASKET BROS <br>
-                ● ADDED MODS TO GOOGLE SNAKE <br>
-                ● *FIXED* Retro Bowl <br>
-                ● Added a seach bar in tradional games <br>
-                ● Turned it into a Whole Website
-                 
-                
-            </p>
+    <div class="dvd-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 94">
+            <path d="M118.895,20.346c0,0-13.743,16.922-13.04,18.001c0.975-1.079-4.934-18.186-4.934-18.186s-1.233-3.597-5.102-15.387H81.81H47.812H22.175l-2.56,11.068h19.299h4.579c12.415,0,19.995,5.132,17.878,14.225c-2.287,9.901-13.123,14.128-24.665,14.128H32.39l5.552-24.208H18.647l-8.192,35.368h27.398c20.612,0,40.166-11.067,43.692-25.288c0.617-2.614,0.53-9.185-1.054-13.053c0-0.093-0.091-0.271-0.178-0.537c-0.087-0.093-0.178-0.722,0.178-0.814c0.172-0.092,0.525,0.271,0.525,0.358c0,0,0.179,0.456,0.351,0.813l17.44,50.315l44.404-51.216l18.761-0.092h4.579c12.424,0,20.09,5.132,17.969,14.225c-2.29,9.901-13.205,14.128-24.75,14.128h-4.405L161,19.987h-19.287l-8.198,35.368h27.398c20.611,0,40.343-11.067,43.604-25.288c3.347-14.225-11.101-25.293-31.89-25.293h-18.143h-22.727C120.923,11.186,118.895,20.346,118.895,20.346L118.895,20.346z"/>
+            <path d="M99.424,67.329C47.281,67.329,5,73.449,5,81.012c0,7.558,42.281,13.678,94.424,13.678c52.239,0,94.524-6.12,94.524-13.678C193.949,73.449,151.664,67.329,99.424,67.329z M96.078,85.873c-11.98,0-21.58-2.072-21.58-4.595c0-2.523,9.599-4.59,21.58-4.59c11.888,0,21.498,2.066,21.498,4.59C117.576,83.801,107.966,85.873,96.078,85.873z"/>
+        </svg>
+    </div>
+    
+    <div class="main-content">
+        <h1 class="title">Big Big Pizza Learning Games</h1>
+        <div class="game-links">
+            <a href="minecraft.html"><img src="image/minecraft.jpeg" alt="Minecraft"><span>Minecrafts</span></a>
+            <a href="chill.html"><img src="image/2048.png" alt="Chill Games"><span>Chill Games</span></a>
+            <a href="tradtional.html"><img src="image/star.jpg" alt="icon"><span>Tradtional Games</span></a>
+            <a href="afk.html"><img src="image/cc.jpeg" alt="AFK Games"><span>Afk Games</span></a>
+            <a href="globalchat.html"><img src="image/chat.png" alt="Chat"><span>Chat</span></a>
+            <a href="tools.html"><img src="image/hammer.png" alt="Tools"><span>Tools</span></a>
+            <a href="soundboard/index.html"><img src="soundboard/img/mlg.png" alt=""><span>Sound Board</span></a>
+            
+            <div>
+                <p class="big-text">
+                    ● ADDED A LIVE CHAT <br>
+                    ● ADDED BASKET BROS <br>
+                    ● ADDED MODS TO GOOGLE SNAKE <br>
+                    ● *FIXED* Retro Bowl <br>
+                    ● Added a seach bar in tradional games <br>
+                    ● Turned it into a Whole Website
+                </p>
+            </div>
         </div>
     </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Secret Games</a>
+                <a href="globalchat.html">Chat</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 20269 REALLY FUN AND EDUCATIONAL LEARNING GAMES, LIKE THEY WILL MAKE YOU SOOOOO SMART<<<<. All rights reserved.
+        </div>
+    </footer>
 </body>
 </html>
